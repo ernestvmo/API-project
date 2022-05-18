@@ -3,6 +3,14 @@
 This project is created for the seminar course Audio Processing and Indexing at Leiden University.<br>
 In this project, we aim to investigate state of the art GAN networks to generate rock music audio samples.<br>
 
+<!-- ### Run Code
+```
+# connect
+ssh s3210359@ssh.liacs.nl
+ssh duranium
+# 
+``` -->
+
 ### Datasets
 To train the models, we used the following datasets:
   - [GTZAN Dataset-Music Genre Classification](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification?resource=download): this dataset, available freely on Kaggle, contains 10000 files of 30 seconds audio samples, divided equally into 10 different music genres. Taking only the rock genre, we can use the 100 samples of 30 seconds to divide them into smaller more usable samples.
