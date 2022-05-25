@@ -94,11 +94,11 @@ python wavegan/train_wavegan.py preview ./train
 
 ### SpecGAN
 add more
-```
+
 
 ### GANSynth
 add more
-```
+
 
 ### MP3net
 add more
