@@ -82,6 +82,8 @@ While it should be possible to train WaveGAN on the GPU, we were unable to have 
 ```
 # for UNIX
 export CUDA_VISIBLE_DEVICES=0
+```
+```
 # for Windows
 set CUDA_VISIBLE_DEVICES=0
 ```
