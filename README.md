@@ -77,11 +77,13 @@ Breakdown:
   - `--data_pad_end` is needed when training on extremely short audio samples (less than 16384 samples each) so that they get zero padded to fill the slice.
   - `--data_prefetch_gpu_num -1` to train the GAN on the CPU.
 
-While it should be possible to train WaveGAN on the GPU, we were unable to have this feature working, hence why `--data_prefetch_gpu_num -1` is required. If you want to try setting up the code to handle GPU training (we won't cover how to enable you GPU for it), use the following command before training the network:
+While it should be possible to train WaveGAN on the GPU, we were unable to have this feature working. If you want to try setting up the code to handle GPU training (we won't cover how to enable you GPU for it), use the following command before training the network:
 
 ```
 # for UNIX
 export CUDA_VISIBLE_DEVICES=0
+```
+```
 # for Windows
 set CUDA_VISIBLE_DEVICES=0
 ```
