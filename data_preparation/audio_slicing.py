@@ -47,7 +47,7 @@ def main(audio_files_path: str = None, export_path: str = "../data/data_sliced/t
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--slice_len", "-s", help="The length (in second) of each chunk of the sliced audio sample.")
+    parser.add_argument("--slice_len", "-s", help="The length (in second) of each chunk of the sliced audio sample.", type=int)
     parser.add_argument("--data_loc", "-dl", help="The directory containing the audio samples.")
     parser.add_argument("--export_loc", "-el", help="The directory where the sliced audio samples will be stored.")
     args = parser.parse_args()
