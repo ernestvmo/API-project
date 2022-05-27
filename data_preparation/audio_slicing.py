@@ -3,7 +3,7 @@ import os
 import argparse
 
 
-def slice_audio(audio_file: str, slice_len: int = 1) -> list:
+def slice_audio(audio_file: str, slice_len: float = 1) -> list:
     """The provided file is sliced into the number of chunks specified, then returns a list of all the smaller audio samples.
 
     Args:
@@ -16,9 +16,9 @@ def slice_audio(audio_file: str, slice_len: int = 1) -> list:
     audio = AudioSegment.from_wav(audio_file)
     slices = []
 
-    for i in range(0, len(audio), slice_len * 1000):
+    for i in range(0, len(audio), int(slice_len * 1000)):
         if not i == round(len(audio) / 1000) * 1000:
-            slices.append(audio[i:i + (slice_len * 1000)])
+            slices.append(audio[i:i + int(slice_len * 1000)])
 
     return slices
 
@@ -33,7 +33,7 @@ def export_slices(slices: list, initial_sample_name: str, saving_location: str):
     for i in range(len(slices)):
         slices[i].export(saving_location + initial_sample_name[:-4] + f"_{(i + 1)}.wav", format="wav")
 
-def main(audio_files_path: str = None, export_path: str = "../data/data_sliced/two", slice_length: int = 1):
+def main(audio_files_path: str = None, export_path: str = "../data/data_sliced/two", slice_length: float = 1):
     if audio_files_path is None:
         assert ValueError("The path to the data should not be None.")
 
@@ -47,7 +47,7 @@ def main(audio_files_path: str = None, export_path: str = "../data/data_sliced/t
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--slice_len", "-s", help="The length (in second) of each chunk of the sliced audio sample.", type=int)
+    parser.add_argument("--slice_len", "-s", help="The length (in second) of each chunk of the sliced audio sample.", type=float)
     parser.add_argument("--data_loc", "-dl", help="The directory containing the audio samples.")
     parser.add_argument("--export_loc", "-el", help="The directory where the sliced audio samples will be stored.")
     args = parser.parse_args()
