@@ -1,0 +1,327 @@
+<html>
+    <header>
+        <title>GAN Comparative Study</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+    </header>
+
+    <body>
+        <div class="title">
+            <a style="color: black;" href="index.html"><h1>Generative Adversarial Networks<br> for Audio Generation: A Comparative Study</h1>
+            <h2>Ernest Vanmosuinck, Antonio Mone,<br>Alessandro Marincioni, Adetunji Ayodele</h2></a>
+            <hr noshade>
+        </div>
+        
+        <div class="title" style="padding-top: 10px; padding-bottom: 10px;">
+            <h2><a href="https://www.upf.edu/web/mtg/irmas" target="_blank">IRMAS</a> Dataset</h2>
+        </div>
+        
+        <div id="training">
+            <h4>Training Samples</h4>
+            <div class="audio_grid sm:cols-2">
+                <div class="audio_sample">
+                    <audio controls>
+                        <source src="audio_samples/IRMAS/training/irmas_training[voice].wav" type="audio/mpeg">
+                    </audio>
+                    <p id="sm:col_p">Sample 1 - voice</p>
+                </div>
+                <div class="audio_sample">
+                    <audio controls>
+                        <source src="audio_samples/IRMAS/training/irmas_training[electric_guitar].wav" type="audio/mpeg">
+                    </audio>
+                    <p id="sm:col_p">Sample 2 - electric guitar</p>
+                </div>
+                <div class="audio_sample">
+                    <audio controls>
+                        <source src="audio_samples/IRMAS/training/irmas_training[saxophone].wav" type="audio/mpeg">
+                    </audio>
+                    <p id="sm:col_p">Sample 3 - saxophone</p>
+                </div>
+                <div class="audio_sample">
+                    <audio controls>
+                        <source src="audio_samples/IRMAS/training/irmas_training[trumpet].wav" type="audio/mpeg">
+                    </audio>
+                    <p id="sm:col_p">Sample 4 - trumpet</p>
+                </div>
+                <div class="audio_sample">
+                    <audio controls>
+                        <source src="audio_samples/IRMAS/training/irmas_training[piano].wav" type="audio/mpeg">
+                    </audio>
+                    <p id="sm:col_p">Sample 5 - piano</p>
+                </div>
+                <div class="audio_sample">
+                    <audio controls>
+                        <source src="audio_samples/IRMAS/training/irmas_training[flute].wav" type="audio/mpeg">
+                    </audio>
+                    <p id="sm:col_p">Sample 6 - flute</p>
+                </div>
+            </div>
+            <hr noshade>
+        </div>
+        
+        <div class="row">
+            <div class="column" id="left">
+                <h3>WaveGAN</h3>
+                <h4>10k steps</h4>
+                <div class="audio_grid sm:cols-2">
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/10k_step/wav_irmas_10k_1.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 1</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/10k_step/wav_irmas_10k_2.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 2</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/10k_step/wav_irmas_10k_3.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 3</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/10k_step/wav_irmas_10k_4.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 4</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/10k_step/wav_irmas_10k_5.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 5</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/10k_step/wav_irmas_10k_6.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 6</p>
+                    </div>
+                </div>
+                <hr noshade>
+            </div>
+            
+            <div class="column" id="right">
+                <h3>SpecGAN</h3>
+                <h4>10k steps</h4>
+                <div class="audio_grid sm:cols-2">
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/10k_step/spec_irmas_10k_1.wav" type="audio/wav">
+                        </audio>
+                        <p id="sm:col_p">Sample 1</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/10k_step/spec_irmas_10k_2.wav" type="audio/wav">
+                        </audio>
+                        <p id="sm:col_p">Sample 2</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/10k_step/spec_irmas_10k_3.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 3</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/10k_step/spec_irmas_10k_4.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 4</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/10k_step/spec_irmas_10k_5.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 5</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/10k_step/spec_irmas_10k_6.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 6</p>
+                    </div>
+                </div>
+                <hr noshade>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="column" id="left">
+                <h4>20k steps</h4>
+                <div class="audio_grid sm:cols-2">
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/20k_step/wav_irmas_20k_1.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 1</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/20k_step/wav_irmas_20k_2.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 2</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/20k_step/wav_irmas_20k_3.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 3</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/20k_step/wav_irmas_20k_4.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 4</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/20k_step/wav_irmas_20k_5.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 5</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/20k_step/wav_irmas_20k_6.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 6</p>
+                    </div>
+                </div>
+                <hr noshade>
+            </div>
+            
+            <div class="column" id="right">
+                <h4>20k steps</h4>
+                <div class="audio_grid sm:cols-2">
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/20k_step/spec_irmas_20k_1.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 1</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/20k_step/spec_irmas_20k_2.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 2</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/20k_step/spec_irmas_20k_3.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 3</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/20k_step/spec_irmas_20k_4.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 4</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/20k_step/spec_irmas_20k_5.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 5</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/20k_step/spec_irmas_20k_6.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 6</p>
+                    </div>
+                </div>
+                <hr noshade>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="column" id="left">
+                <h4>30k steps</h4>
+                <div class="audio_grid sm:cols-2">
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/30k_step/wav_irmas_30k_1.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 1</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/30k_step/wav_irmas_30k_2.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 2</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/30k_step/wav_irmas_30k_3.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 3</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/30k_step/wav_irmas_30k_4.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 4</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/30k_step/wav_irmas_30k_5.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 5</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/WaveGAN/30k_step/wav_irmas_30k_6.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 6</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="column" id="right" style="margin-bottom: 100px;">
+                <h4>30k steps</h4>
+                <div class="audio_grid sm:cols-2">
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/30k_step/spec_irmas_30k_1.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 1</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/30k_step/spec_irmas_30k_2.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 2</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/30k_step/spec_irmas_30k_3.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 3</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/30k_step/spec_irmas_30k_4.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 4</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/30k_step/spec_irmas_30k_5.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 5</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/IRMAS/SpecGAN/30k_step/spec_irmas_30k_6.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 6</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

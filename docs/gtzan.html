@@ -1,0 +1,327 @@
+<html>
+    <header>
+        <title>GAN Comparative Study</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+    </header>
+
+    <body>
+        <div class="title">
+            <a style="color: black;" href="index.html"><h1>Generative Adversarial Networks<br> for Audio Generation: A Comparative Study</h1>
+            <h2>Ernest Vanmosuinck, Antonio Mone,<br>Alessandro Marincioni, Adetunji Ayodele</h2></a>
+            <hr noshade>
+        </div>
+        
+        <div class="title" style="padding-top: 10px; padding-bottom: 10px;">
+            <h2><a href="https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification?resource=download" target="_blank">GTZAN</a> Dataset</h2>
+        </div>
+        
+        <div id="training">
+            <h4>Training Samples</h4>
+            <div class="audio_grid sm:cols-2">
+                <div class="audio_sample">
+                    <audio controls>
+                        <source src="audio_samples/GTZAN/training/GTZAN_training_1.wav" type="audio/mpeg">
+                    </audio>
+                    <p id="sm:col_p">Sample 1</p>
+                </div>
+                <div class="audio_sample">
+                    <audio controls>
+                        <source src="audio_samples/GTZAN/training/GTZAN_training_2.wav" type="audio/mpeg">
+                    </audio>
+                    <p id="sm:col_p">Sample 2</p>
+                </div>
+                <div class="audio_sample">
+                    <audio controls>
+                        <source src="audio_samples/GTZAN/training/GTZAN_training_3.wav" type="audio/mpeg">
+                    </audio>
+                    <p id="sm:col_p">Sample 3</p>
+                </div>
+                <div class="audio_sample">
+                    <audio controls>
+                        <source src="audio_samples/GTZAN/training/GTZAN_training_4.wav" type="audio/mpeg">
+                    </audio>
+                    <p id="sm:col_p">Sample 4</p>
+                </div>
+                <div class="audio_sample">
+                    <audio controls>
+                        <source src="audio_samples/GTZAN/training/GTZAN_training_5.wav" type="audio/mpeg">
+                    </audio>
+                    <p id="sm:col_p">Sample 5</p>
+                </div>
+                <div class="audio_sample">
+                    <audio controls>
+                        <source src="audio_samples/GTZAN/training/GTZAN_training_6.wav" type="audio/mpeg">
+                    </audio>
+                    <p id="sm:col_p">Sample 6</p>
+                </div>
+            </div>
+            <hr noshade>
+        </div>
+        
+        <div class="row">
+            <div class="column" id="left">
+                <h3>WaveGAN</h3>
+                <h4>10k steps</h4>
+                <div class="audio_grid sm:cols-2">
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/10k_step/wav_gtzan_10k_1.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 1</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/10k_step/wav_gtzan_10k_2.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 2</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/10k_step/wav_gtzan_10k_3.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 3</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/10k_step/wav_gtzan_10k_4.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 4</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/10k_step/wav_gtzan_10k_5.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 5</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/10k_step/wav_gtzan_10k_6.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 6</p>
+                    </div>
+                </div>
+                <hr noshade>
+            </div>
+            
+            <div class="column" id="right">
+                <h3>SpecGAN</h3>
+                <h4>10k steps</h4>
+                <div class="audio_grid sm:cols-2">
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/10k_step/spec_gtzan_10k_1.wav" type="audio/wav">
+                        </audio>
+                        <p id="sm:col_p">Sample 1</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samplesSpecGAN/10k_step/spec_gtzan_10k_2.wav" type="audio/wav">
+                        </audio>
+                        <p id="sm:col_p">Sample 2</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/10k_step/spec_gtzan_10k_3.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 3</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/10k_step/spec_gtzan_10k_4.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 4</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/10k_step/spec_gtzan_10k_5.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 5</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/10k_step/spec_gtzan_10k_6.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 6</p>
+                    </div>
+                </div>
+                <hr noshade>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="column" id="left">
+                <h4>20k steps</h4>
+                <div class="audio_grid sm:cols-2">
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/20k_step/wav_gtzan_20k_1.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 1</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/20k_step/wav_gtzan_20k_2.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 2</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/20k_step/wav_gtzan_20k_3.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 3</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/20k_step/wav_gtzan_20k_4.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 4</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/20k_step/wav_gtzan_20k_5.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 5</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/20k_step/wav_gtzan_20k_6.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 6</p>
+                    </div>
+                </div>
+                <hr noshade>
+            </div>
+            
+            <div class="column" id="right">
+                <h4>20k steps</h4>
+                <div class="audio_grid sm:cols-2">
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/20k_step/spec_gtzan_20k_1.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 1</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/20k_step/spec_gtzan_20k_2.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 2</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/20k_step/spec_gtzan_20k_3.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 3</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/20k_step/spec_gtzan_20k_4.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 4</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/20k_step/spec_gtzan_20k_5.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 5</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/20k_step/spec_gtzan_20k_6.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 6</p>
+                    </div>
+                </div>
+                <hr noshade>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="column" id="left">
+                <h4>30k steps</h4>
+                <div class="audio_grid sm:cols-2">
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/30k_step/wav_gtzan_30k_1.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 1</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/30k_step/wav_gtzan_30k_2.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 2</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/30k_step/wav_gtzan_30k_3.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 3</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/30k_step/wav_gtzan_30k_4.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 4</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/30k_step/wav_gtzan_30k_5.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 5</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/WaveGAN/30k_step/wav_gtzan_30k_6.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 6</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="column" id="right" style="margin-bottom: 100px;">
+                <h4>30k steps</h4>
+                <div class="audio_grid sm:cols-2">
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/30k_step/spec_gtzan_30k_1.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 1</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/30k_step/spec_gtzan_30k_2.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 2</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/30k_step/spec_gtzan_30k_3.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 3</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/30k_step/spec_gtzan_30k_4.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 4</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/30k_step/spec_gtzan_30k_5.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 5</p>
+                    </div>
+                    <div class="audio_sample">
+                        <audio controls>
+                            <source src="audio_samples/GTZAN/SpecGAN/30k_step/spec_gtzan_30k_6.wav" type="audio/mpeg">
+                        </audio>
+                        <p id="sm:col_p">Sample 6</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

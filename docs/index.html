@@ -1,23 +1,32 @@
-<!DOCTYPE html>
 <html>
     <header>
         <title>GAN Comparative Study</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
     </header>
+
     <body>
         <div class="title">
-            <h1>Generative Adversarial Networks<br> for Audio Generation: A Comparative Study</h1>
-            <h2>Ernest Vanmosuinck, Antonio Mone,<br>Alessandro Marincioni, Adetunji Ayodele</h2>
+            <a style="color: black;" href="index.html"><h1>Generative Adversarial Networks<br> for Audio Generation: A Comparative Study</h1>
+            <h2>Ernest Vanmosuinck, Antonio Mone,<br>Alessandro Marincioni, Adetunji Ayodele</h2></a>
+            <hr noshade>
         </div>
-
-        <hr style="width: 50%; height: 1px; background-color: black; color: black;">
-        <span></span>
-        <div class="content">
-            <h4>Kaggle Dataset</h4>
+        
+        <div class="row" id="home_page">
+            <a id="next_page" href="gtzan.html">
+                <div class="column" id="left">
+                    <h2><span style="color: red;">GTZAN</span> Dataset Results</h2>
+                    <p style="text-align: left;">Used for Instrument Recognition in Musical Audio Signals, each audio sample has an instrument and music genre attached (for this task we filtered only the pop-rock genre).</p>
+                </div>
+            </a>
             
-            <h4>IRMAS Dataset</h4>
+            <a id="next_page" href="irmas.html">
+                <div class="column" id="right" style="margin-bottom: 100px;">
+                    <h2><span style="color: red;">IRMAS</span> Dataset Results</h2>
+                    <p style="text-align: left;">Collection of 10 genres with 100 audio files each, all having a length of 30 seconds (for this task we filtered only the pop-rock genre).</p>
+                </div>
+            </a>
         </div>
     </body>
 </html>
