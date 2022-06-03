@@ -64,10 +64,10 @@ python data_preparation/file_filtering.py -dl /temp/data/location/ -el /temp/exp
 ### WaveGAN
 The implementation of WaveGAN in this project is forked from the [WaveGAN](https://github.com/chrisdonahue/wavegan) repository developped by [Chris Donahue](https://github.com/chrisdonahue), [Andrés Marafioti](https://github.com/andimarafioti) and [Christian Clauss](https://github.com/cclauss).
 
-To train a WaveGAN network, use the following command:
+To train (or resume training) a WaveGAN network, use the following command:
 
 ```
-python wavegan/train_wavegan.py train ./train --data_dir ./path/to/data/ --data_first_slice --data_pad_end --data_prefetch_gpu_num -1 
+python wavegan/train_wavegan.py train ./path/to/save/location --data_dir ./path/to/data/ --data_first_slice --data_pad_end --data_prefetch_gpu_num -1 
 ```
 
 This command is used to train on short data samples. To train on long audio samples (longer than a few seconds), remove `--data_first_slice` and `--data_pad_end` from the command.<br>
@@ -91,16 +91,56 @@ set CUDA_VISIBLE_DEVICES=0
 The code also implements a function to create .wav samples when a checkpoint is created:
 
 ```
-python wavegan/train_wavegan.py preview ./train
+python wavegan/train_wavegan.py preview ./path/to/save/location
 ```
 
-### SpecGAN
-add more
+To back up checkpoints every hour (GAN training may occasionally collapse so it's good to have backups):
+```
+python wavegan/backup.py ./path/to/save/location 60
+```
 
+We have provided a notbook to generate audio in `generate.ipynb`, but we recommend using the following [colab notebook](https://colab.research.google.com/drive/18s5r2tCazWHMyVK-jGosullHOqUNd8I6?usp=sharing), as Google Colab provides easy access to GPUs.
+<br><br>
+
+### SpecGAN
+The implementation of SpecGAN in this project is forked from the [WaveGAN](https://github.com/chrisdonahue/wavegan) repository developped by [Chris Donahue](https://github.com/chrisdonahue), [Andrés Marafioti](https://github.com/andimarafioti) and [Christian Clauss](https://github.com/cclauss).
+
+Before training a SpecGAN network, it is necessary to compute mean and variance of each spectrogram bin to use for normalization:
+```
+python wavegan/train_specgan.py moments ./path/to/save/location --data_dir ./path/to/data/ --data_moments_fp ./path/to/save/location/moments.pkl
+```
+
+To train (or resume training) a SpecGAN network, use the following command:
+
+```
+python wavegan/train_specgan.py train ./path/to/save/location --data_dir ./path/to/data/ --data_first_slice --data_pad_end --data_prefetch_gpu_num -1 --data_moments_fp ./path/to/save/location/moments.cpkl
+```
+
+This command is used to train on short data samples. To train on long audio samples (longer than a few seconds), remove `--data_first_slice` and `--data_pad_end` from the command.<br>
+Breakdown:
+  - `--data_dir` specifies the data used for training the GAN.
+  - `--data_first_slice` is needed when training on shorter audio samples to only extract the first slice from each audio file.
+  - `--data_pad_end` is needed when training on extremely short audio samples (less than 16384 samples each) so that they get zero padded to fill the slice.
+  - `--data_prefetch_gpu_num -1` to train the GAN on the CPU.
+
+SpecGAN also required more memory when running on our system, thus we had to change the batch size to 16 (it is set to 32 by default) using `--train_batch_size 16`.
+
+Similar to WaveGAN, the implementation provides a function to create .wav audio samples when a checkpoint of the model is created. To run this script, use the following command:
+```
+python wavegan/train_specgan.py preview ./path/to/save/location --data_moments_fp ./path/to/save/location/moments.cpkl
+```
+
+Similar to WaveGAN, you can back up checkpoints every hour with the following command:
+```
+python wavegan/backup.py ./path/to/save/location 60
+```
+
+The [colab notebook](https://colab.research.google.com/drive/18s5r2tCazWHMyVK-jGosullHOqUNd8I6?usp=sharing) also handles generating SpecGAN samples.
+<br><br>
 
 ### GANSynth
 add more
-
+<br><br>
 
 ### MP3net
 add more
