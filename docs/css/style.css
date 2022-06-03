@@ -29,7 +29,7 @@ hr {
     margin-top: 25px;
 }
 
-
+/*-----------------------------------*/
 
 #training > hr {
     margin-bottom: 50px;
@@ -38,8 +38,6 @@ hr {
 .column > hr, .title > hr {
     width: 75%;
 }
-
-/*-----------------------------------*/
 
 #home_page {
     padding-top: 20px;
@@ -60,6 +58,10 @@ hr {
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.title > a {
+    text-decoration: none;
 }
 
 .row:after {
