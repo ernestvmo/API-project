@@ -146,6 +146,9 @@ python3 mp3net/audiocodec/setup.py build
 python3 mp3net/audiocodec/setup.py install
 ```
 
+If the samples in the dataset are too short the network is not going to work, therefore a sample aggregation script is included, called `aggregating.py`
+Here you have to input in the code the directories of the samples you want to merge and sum them, in order to produce a longer sample. Future work include the automation of this script without the need of hardcoding the directories but simply declaring the least amount of second and the directory with all the files.
+
 After this step, now it is possible to start preparing the data using the following commands:
 ```
 python3 mp3net/dataprep.py --data_dir /path/to/folder/with/wav/files --data_dest /path/to/destination
