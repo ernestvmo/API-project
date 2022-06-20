@@ -1,0 +1,15 @@
+batch_size,1
+data_dir,/Users/Tonio/Desktop/API/data/data_sliced/prepwav
+data_shuffle_buffer_size,128
+infer_dir,None
+mode,train
+n_discr,1
+runtime_launch_tensorboard,False
+runtime_tpu,False
+summary_dir,/Users/Tonio/Desktop/API/data/data_sliced/DataGen/train_20220618191928/summary/
+summary_freq,500
+tpu_profiling,False
+train_checkpoint_freq,100
+training_base_dir,/Users/Tonio/Desktop/API/data/data_sliced/DataGen
+training_dir,/Users/Tonio/Desktop/API/data/data_sliced/DataGen/train_20220618191928
+training_sub_dir,/Users/Tonio/Desktop/API/data/data_sliced/DataGen/train_20220618191928
