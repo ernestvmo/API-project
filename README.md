@@ -188,4 +188,8 @@ Once again, it is possible to add the same instructions as before:
 <br><br>
 
 ### GANSynth
-add more
+The GANSynth implementation is based on the [GANSynth demo](https://colab.research.google.com/notebooks/magenta/gansynth/gansynth_demo.ipynb) provided by magenta. The code to generate the music samples is `make_gansynth_samples.ipynb`. The script installs the magenta library and downloads the pretrained weights for the GANSynth model.
+
+Different model checkpoints can be loaded by assigning the proper path to the `CKPT_DIR` attribute found in the first block. Running the rest of the notebook generates 1024 samples using the model. Generating many samples on the CPU can be slow so GPU usage is recommended. The script was written and tested using Google Colab.
+
+The python script `get_rock_scores.py` is used to evaluate the different samples that were created. The script relies on [this](https://github.com/Hguimaraes/gtzan.keras) repository to load a pretrained model and classify each samples according to how much they sound like rock. The score for each sample is then saved.
