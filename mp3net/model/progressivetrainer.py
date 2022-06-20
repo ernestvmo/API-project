@@ -27,6 +27,7 @@ class ProgressiveTrainer:
 
     # set up model_factory
     self.model_factory = mp3net.MP3netFactory()
+    print(" I'm printing stage_total_songs ->   ", self.model_factory.stage_total_songs)
 
     print("ProGAN training:")
     for stage, (blocks_n, freq_n) in enumerate(zip(self.model_factory.blocks_n, self.model_factory.freq_n)):
@@ -39,10 +40,10 @@ class ProgressiveTrainer:
     else:
       print("Starting anew from stage 0")
       stage_start = 0
-
+    print("Stage start: ----", stage_start)
     model_weights = None
     for stage in range(stage_start, self.model_factory.stages):
-      print()
+      print(f"stage: {stage} ---- {self.model_factory.stage_total_songs[stage]}")
       if self.model_factory.stage_total_songs[stage] == 0:
         print("======= Empty stage {0} =======".format(stage))
       else:
@@ -56,10 +57,11 @@ class ProgressiveTrainer:
 
         # set up summary writer (different writer for different stage, since different tensors etc)
         summary_dir = os.path.join(self.args.summary_dir, f"stage-{stage}")
-
+        print(f"   summary: --{summary_dir}")
         # 2. start model driver
         model_driver = DistributedModelDriver(self.strategy, self.model_factory, stage,
                                               mode='train', summary_dir=summary_dir, args=self.args)
+        print(f"   model weights: --{model_weights}")
         if model_weights is None:
           model_driver.load_latest_checkpoint()
         else:
@@ -69,7 +71,9 @@ class ProgressiveTrainer:
 
         # 3. run model
         data_files = self.find_data_files(stage, self.args.data_dir, self.model_factory)
+        #print(f"---data loaded: {data_files}")
         model_weights = model_driver.training_loop(data_files)
+        print(f"   model weights: --{type(model_weights)}")
 
         print("======= Exiting stage {} =======".format(stage))
 
@@ -132,7 +136,7 @@ class ProgressiveTrainer:
     print()
 
     # 1. start model driver
-    model_driver = DistributedModelDriver(self.strategy, self.model_factory, stage, mode='infer', args=self.args)
+    model_driver = DistributedModelDriver(self.strategy, self.model_factory, stage, mode='infer',summary_dir = "/Users/Tonio/Desktop/Mp3Net/data/data_sliced/DataGen/train_20220618191928/summary/stage-5", args=self.args)
     model_driver.load_latest_checkpoint()
     model_driver.print_model_summary()
 

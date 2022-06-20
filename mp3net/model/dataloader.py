@@ -59,6 +59,7 @@ def load_dataset(
   Returns:
     A dataset with tensor of the form [batches_n, blocks_n, freqs_n, channels_n=1]
   """
+  print(f"db: -> {distributed_context}")
   # Create dataset of filepaths (still on CPU)
   # dataset = tf.data.TFRecordDataset(input_filenames, compression_type="GZIP",
   #                                   num_parallel_reads=tf.data.experimental.AUTOTUNE)

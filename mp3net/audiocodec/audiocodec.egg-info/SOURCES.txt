@@ -1,0 +1,12 @@
+README.md
+setup.py
+audiocodec/__init__.py
+audiocodec/mdctransformer.py
+audiocodec/psychoacoustic.py
+audiocodec.egg-info/PKG-INFO
+audiocodec.egg-info/SOURCES.txt
+audiocodec.egg-info/dependency_links.txt
+audiocodec.egg-info/top_level.txt
+audiocodec/tests/__init__.py
+audiocodec/tests/test_mdctransformer.py
+audiocodec/tests/test_psychoacoustic.py

@@ -25,7 +25,7 @@ def audio2tfrecord(audio_file_paths: str, output_filename: str, model: mp3net.MP
   def _decode_audio_shaped(filepath):
     _decode_audio_closure = lambda _filepath: audio_utils.load_audio(_filepath.numpy().decode('utf-8'),
                                                                      sample_rate=model.sample_rate,
-                                                                     mono=(model.channels_n[-1]==1))
+                                                                     mono=(model.channels_n[-1]==1), verbose=verbose)
     audio = tf.py_function(_decode_audio_closure, [filepath], tf.float32)
     return audio
 
@@ -106,9 +106,9 @@ def main(data_dir: str, data_destination: str, file_extension: str, batch_size: 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_dir", help="Audio files directory to be transformed to TfRecords.", required=True)
-    parser.add_argument("--data_dest", help="", required=True)
+    parser.add_argument("--data_dest", help="Destination directory where the TfRecords will be saved.", required=True)
     parser.add_argument("--file_extension", help="", default="wav")
     parser.add_argument("--batch_size", help="Batch size for grouping audio samples in TfRecords.", default=10, type=int)
-    parser.add_argument("-v", "--verbose", help="Flag to turn console display on/off", default=True, type=bool)
+    parser.add_argument("--verbose", help="Flag to turn console display on (is off by default).", default=False, action='store_true')
     args = parser.parse_args()
     main(args.data_dir, args.data_dest, args.file_extension, args.batch_size, args.verbose)

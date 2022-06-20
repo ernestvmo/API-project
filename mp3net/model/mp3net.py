@@ -37,7 +37,9 @@ class MP3netFactory:
     # ProGAN training phases
     self.stages = 6
 
-    self.stage_total_songs = [1024 * x for x in [0] * (self.stages-1) + [200000]]
+    #self.stage_total_songs = [1024 * x for x in [0] * (self.stages-1) + [200000]]
+    self.stage_total_songs = [1 * x for x in [0] * (self.stages-1) + [5000]] 
+    #print("These are the mp3netfactory self.stage_total_songs,",self.stage_total_songs)
     self.fade_in_progression = [
       lambda song_counter, stage=stage: tf.constant(1., shape=())
       for stage in range(self.stages)]
@@ -50,11 +52,13 @@ class MP3netFactory:
     self.dim_ch = 2*8
     self.max_dim_ch = 4*128
     self.blocks_per_sec = 172
-
+    #modify these ones to get to 3seconds files as an input dimension
+    #self.blocks_n = [int(2**(stage+1)>>1) * self.base_block_length for stage in range(self.stages)]
+    #self.freq_n = [2*2**(stage+1) for stage in range(self.stages)]  # \Sum_i^N 2^i = 2^N+1 - 1
     self.blocks_n = [4**(stage+1) * self.base_block_length for stage in range(self.stages)]
     self.freq_n = [2 * 2**(stage+1) for stage in range(self.stages)]  # \Sum_i^N 2^i = 2^N+1 - 1
     self.channels_n = [1 for _ in range(self.stages)]  # 1:mono 2:stereo
-
+    print(f"BLOCKS {self.blocks_n}")
     self.drown = [0.0 for _ in range(self.stages)]  # sets amount of noise added to deeper samples
 
     self.sample_rate = self.freq_n[-1] * self.blocks_per_sec
@@ -282,6 +286,7 @@ class MP3netFactory:
     per_worker_batch_size = global_batch_size // tf.distribute.get_strategy().num_replicas_in_sync
     batch_input_shape = tf.TensorShape([per_worker_batch_size, self.blocks_n[model_stage],
                                         self.freq_n[model_stage], self.channels_n[model_stage]])
+    print(f"BATCH INPUT SHAPE {batch_input_shape}")
     inputs = tf.keras.Input(batch_input_shape=batch_input_shape, name='discriminator_input')
 
     # let keras autocast-magic convert inputs to bfloat16 when in mixed_precision mode

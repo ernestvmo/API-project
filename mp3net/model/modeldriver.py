@@ -162,26 +162,45 @@ class DistributedModelDriver:
             shuffle=True,
             shuffle_buffer_size=self.args.data_shuffle_buffer_size,
             tpu=self.args.runtime_tpu)
+        print(f"spectogram db: {spectrogram_dataset}")
+        #print(f"Filenames: {input_filenames}")
+        print(f"spectogram db: {type(spectrogram_dataset)}")
         return spectrogram_dataset
+
 
       # now distribute the dataset over devices
       # note: The tf.data.Dataset returned by dataset_fn should have a per_replica_batch_size
       #   (see https://www.tensorflow.org/api_docs/python/tf/distribute/experimental/TPUStrategy)
       # experimental_distribute_datasets_from_function() returns a DataSet of PerReplica objects ;-)
-      spectrogram_dataset_distr = self.strategy.experimental_distribute_datasets_from_function(dataset_fn)
+      batched_db = tf.data.TFRecordDataset(input_filenames, compression_type="GZIP",
+                                    num_parallel_reads=tf.data.experimental.AUTOTUNE)
+      spectrogram_dataset_distr = self.strategy.distribute_datasets_from_function(dataset_fn)
+      #spectrogram_dataset_distr = self.strategy.experimental_distribute_dataset(batched_db)
+      #print(f"specogram distrib: ----{(iter(spectrogram_dataset_distr)).element_spec}")
+      print(f"specogram distrib: ----{type(spectrogram_dataset_distr)}")
 
       # Main training loop runs on CPU!!!
       step = tf.cast(self.discriminator_optimizer.iterations, dtype=tf.int64)
-      for reals_batch_per_replica in spectrogram_dataset_distr:
-        # real_mdct_norm_batch is a PerReplica object with per replica a batch with the per_replica_batch_size
+      print(f"step: ----{step}")
+      print(f"Spectogram Dataset Distr =>----- {spectrogram_dataset_distr}")
+      print("Beginning of the for loop") 
+      #dataset = tf.data.Dataset.range(2)
+      #iterator = iter(spectrogram_dataset_distr)
+      #print(iterator.get_next())
 
+      for reals_batch_per_replica in spectrogram_dataset_distr:
+        print("ENTERING THE FOR LOOP")
+        # real_mdct_norm_batch is a PerReplica object with per replica a batch with the per_replica_batch_size
+        print(f"real_batch_per_replica: ----")
         if tf.math.floormod(step, self.summary_freq) == 0 and step > 0:
           # write summary (not at same time as training, since it blows up the TPU...)
           self.write_summary_gan(reals_batch_per_replica, step)
           step += 1  # so for next batch from dataset, it takes the train branch of this if statement
         else:
           # train
+          print("ENTERING THE ELSE - TRAIN SECTION")
           step = self.train_step(reals_batch_per_replica)
+          
           step = tf.cast(step, dtype=tf.int64)
           # song_counter is not a distributed variable, so update needs to happen on host (not on replicas!)
           self.model.song_counter.assign_add(self.global_batch_size)
@@ -202,7 +221,7 @@ class DistributedModelDriver:
         # exit condition
         if tf.greater_equal(self.model.song_counter, self.model.stage_total_songs):
           break
-
+      print("End of the for loop")     
     return self._weights_by_layer_name(self.model.generator), self._weights_by_layer_name(self.model.discriminator)
 
   @tf.function
@@ -216,17 +235,16 @@ class DistributedModelDriver:
     # 2. self.strategy.reduce() to reduce over workers, or
     # 3. direct dict structure of PerReplica object (see self._merge_batch_over_replicas(...))
     step_per_replica = self.strategy.run(self.train_step_per_replica_gan, args=(reals,))
-
     # reduce step_per_replica over the different replicas
     step = self.strategy.reduce(tf.distribute.ReduceOp.MEAN, step_per_replica, axis=None)
     return step
 
   # This function should NOT have a @tf.function, does not work on TPU
   def train_step_per_replica_gan(self, reals_with_stddev):
+    print("ENTERING TRAIN STEP PER REPLICA GAN")
     reals = reals_with_stddev[:, :, :, :, 0]
     masking_threshold = reals_with_stddev[:, :, :, :, 1]
     real_noised = self.model.audio_representation.add_noise(reals, masking_threshold)
-
     per_replica_batch_size = reals.shape[0]
 
     # discriminator training
@@ -250,7 +268,6 @@ class DistributedModelDriver:
         g_loss_ave = self.model.g_loss(z_vector, training=True)
       generator_gradients = tape.gradient(g_loss_ave, self.model.generator.trainable_variables)
       self.generator_optimizer.apply_gradients(zip(generator_gradients, self.model.generator.trainable_variables))
-
     return step
 
   # ########### #
@@ -282,7 +299,7 @@ class DistributedModelDriver:
       # note: The tf.data.Dataset returned by dataset_fn should have a per_replica_batch_size
       #   (see https://www.tensorflow.org/api_docs/python/tf/distribute/experimental/TPUStrategy)
       # experimental_distribute_datasets_from_function() returns a DataSet of PerReplica objects ;-)
-      return iter(self.strategy.experimental_distribute_datasets_from_function(dataset_fn))
+      return iter(self.strategy.distribute_datasets_from_function(dataset_fn))
 
   def evaluation_loop(self, distributed_dataset_iterator):
     with self.strategy.scope():

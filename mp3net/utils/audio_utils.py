@@ -13,7 +13,7 @@ import scipy.io.wavfile as wavfile
 import soundfile
 
 
-def load_audio(audio_file, sample_rate=None, mono=False, max_wav=0.999):
+def load_audio(audio_file, sample_rate=None, mono=False, max_wav=0.999, verbose=False):
   """Loads and decodes audio file into 32-bit floating-point wav format
 
   Args:
@@ -24,7 +24,8 @@ def load_audio(audio_file, sample_rate=None, mono=False, max_wav=0.999):
   Returns:                 normalized (-1..1) audio sample  [samples_n, channels_n] and
                            output sample_rate
   """
-  print('reading <{}>...'.format(audio_file))
+  if verbose:
+    print('reading <{}>...'.format(audio_file))
 
   # allow download from gs://
   audio_file_gfile = tf.io.gfile.GFile(audio_file, mode='rb')
