@@ -193,3 +193,7 @@ The GANSynth implementation is based on the [GANSynth demo](https://colab.resear
 Different model checkpoints can be loaded by assigning the proper path to the `CKPT_DIR` attribute found in the first block. Running the rest of the notebook generates 1024 samples using the model. Generating many samples on the CPU can be slow so GPU usage is recommended. The script was written and tested using Google Colab.
 
 The python script `get_rock_scores.py` is used to evaluate the different samples that were created. The script relies on [this](https://github.com/Hguimaraes/gtzan.keras) repository to load a pretrained model and classify each samples according to how much they sound like rock. The score for each sample is then saved. The script should be stored and ran from the src directory. The audio samples generated using the notebook should also be moved to the proper directory.
+<br><br>
+
+### Results
+We used the models saved at steps 10k, 20k and 30k to generate audio samples with WaveGAN and SpecGAN, those results can be seen on the [repository's website](https://ernestvmo.github.io/API-project/).
