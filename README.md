@@ -103,6 +103,7 @@ We have provided a notbook to generate audio in `generate.ipynb`, but we recomme
 <br><br>
 
 ### SpecGAN
+Note: The specgan files can be found in the `wavegan` directory.
 The implementation of SpecGAN in this project is forked from the [WaveGAN](https://github.com/chrisdonahue/wavegan) repository developped by [Chris Donahue](https://github.com/chrisdonahue), [Andrés Marafioti](https://github.com/andimarafioti) and [Christian Clauss](https://github.com/cclauss).
 
 Before training a SpecGAN network, it is necessary to compute mean and variance of each spectrogram bin to use for normalization:
@@ -136,12 +137,7 @@ python wavegan/backup.py ./path/to/save/location 60
 ```
 
 The [colab notebook](https://colab.research.google.com/drive/18s5r2tCazWHMyVK-jGosullHOqUNd8I6?usp=sharing) also handles generating SpecGAN samples.
-
-<!-- <br><br>
-### GANSynth
-add more
 <br><br>
- -->
  
 ### MP3net
 After creating a virtual environment in the folder that contains both the data and the model, as first step, run these commands to build and install audiocoded (included in the mp3net project folder)
@@ -150,6 +146,9 @@ After creating a virtual environment in the folder that contains both the data a
 python3 mp3net/audiocodec/setup.py build
 python3 mp3net/audiocodec/setup.py install
 ```
+
+If the samples in the dataset are too short the network is not going to work, therefore a sample aggregation script is included, called `aggregating.py`
+Here you have to input in the code the directories of the samples you want to merge and sum them, in order to produce a longer sample. Future work include the automation of this script without the need of hardcoding the directories but simply declaring the least amount of second and the directory with all the files.
 
 After this step, now it is possible to start preparing the data using the following commands:
 ```
@@ -186,4 +185,7 @@ Once again, it is possible to add the same instructions as before:
 - `--batch_size N`
 - `--data_shuffle_buffer_size N`
 - `--n_discr N`
+<br><br>
 
+### GANSynth
+add more
