@@ -103,6 +103,7 @@ We have provided a notbook to generate audio in `generate.ipynb`, but we recomme
 <br><br>
 
 ### SpecGAN
+Note: The specgan files can be found in the `wavegan` directory.
 The implementation of SpecGAN in this project is forked from the [WaveGAN](https://github.com/chrisdonahue/wavegan) repository developped by [Chris Donahue](https://github.com/chrisdonahue), [Andrés Marafioti](https://github.com/andimarafioti) and [Christian Clauss](https://github.com/cclauss).
 
 Before training a SpecGAN network, it is necessary to compute mean and variance of each spectrogram bin to use for normalization:
