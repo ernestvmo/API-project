@@ -143,4 +143,46 @@ add more
 <br><br>
 
 ### MP3net
-add more
+After creating a virtual environment in the folder that contains both the data and the model, as first step, run these commands to build and install audiocoded (included in the mp3net project folder)
+
+```
+python3 mp3net/audiocodec/setup.py build
+python3 mp3net/audiocodec/setup.py install
+```
+
+After this step, now it is possible to start preparing the data using the following commands:
+```
+python3 mp3net/dataprep.py --data_dir /path/to/folder/with/wav/files --data_dest /path/to/destination
+```
+There are some standard values, but it is possible to define the batch size (for example 16) adding ` --batch_size 16`
+Furthermore, it is possible to have a summary of what is going on during the preparation adding the flag `--verbose`
+
+Now that the data has been prepared, it is possible to start training.
+
+If we are starting the training from scratch, the commang to use is:
+```
+python3 mp3net/launcher.py --data_dir /path/to/prepared/files --training_base_dir /path/to/general/training/directory train
+```
+
+As before, we can give more instructions like:
+- `--batch_size N`
+- `--data_shuffle_buffer_size N`
+- `--n_discr N`
+
+This command will create a new directory in which summary and checkpoints of the training will be stored (this can take a lot of space).
+
+If we are not starting the training from scratch, we need to add another instruction:
+- `--training_sub_dir /path/to/the/previously/generated/folder/`
+
+The training will take a lot of time and will take a lot of space on the disk, be aware of this when running this model.
+At the end of the training phase, it should be possible to use another command to generate (infer) new samples
+
+```
+python3 mp3net/launcher.py --data_dir /path/to/prepared/files --training_base_dir /path/to/general/training/directory --training_sub_dir /path/to/the/previously/generated/folder/ --infer_dir /path/to/generated/audio/destination infer
+```
+
+Once again, it is possible to add the same instructions as before:
+- `--batch_size N`
+- `--data_shuffle_buffer_size N`
+- `--n_discr N`
+
