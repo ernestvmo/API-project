@@ -136,12 +136,7 @@ python wavegan/backup.py ./path/to/save/location 60
 ```
 
 The [colab notebook](https://colab.research.google.com/drive/18s5r2tCazWHMyVK-jGosullHOqUNd8I6?usp=sharing) also handles generating SpecGAN samples.
-
-<!-- <br><br>
-### GANSynth
-add more
 <br><br>
- -->
  
 ### MP3net
 After creating a virtual environment in the folder that contains both the data and the model, as first step, run these commands to build and install audiocoded (included in the mp3net project folder)
@@ -186,4 +181,7 @@ Once again, it is possible to add the same instructions as before:
 - `--batch_size N`
 - `--data_shuffle_buffer_size N`
 - `--n_discr N`
+<br><br>
 
+### GANSynth
+add more
