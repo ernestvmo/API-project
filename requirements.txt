@@ -98,7 +98,7 @@ SoundFile==0.10.3.post1
 tensorboard==2.6.0
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.1
-tensorflow==2.6.2
+tensorflow==2.7.2
 tensorflow-estimator==2.6.0
 termcolor==1.1.0
 terminado==0.12.1
